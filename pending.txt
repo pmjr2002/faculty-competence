@@ -1,0 +1,6 @@
+1. publication count
+2. reflect update profile
+3. new course schema
+4. report
+6. faculty mebership
+7. designation
