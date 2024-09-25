@@ -68,4 +68,3 @@ To test the backend API, use Postman or any other API testing tool. Import the s
 - `/api`: Backend implementation
   - `/models`: Sequelize models
   - `/controllers`: Request handling logic
-- `/mockups` and `/markup`: UI mockup designs (if applicable)
