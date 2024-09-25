@@ -1,50 +1,71 @@
-# Full Stack App with React and a REST API
+# Faculty Competence Management System
 
-This project is a Full Stack React application utilising the [School Database REST API built in a previous project.](https://github.com/alexhippo/rest-api-sql-v3) Users can use the web interface built with React to:
-- sign up
-- sign in
-- view courses
-- create a course (if signed in)
-- update their own courses (if authorised)
-- delete their own courses (if authorised)
+This project is a Full Stack web application built with React and a REST API. It serves as a platform for faculty members to manage and track their academic achievements and professional activities.
 
-This app was implemented according to the designs specified in the `/mockups` and `/markup` folder.
+## Features
+
+- User Authentication: Sign up and log in.
+- View and manage courses, papers, conferences, books, patents, and events.
+- Add new entries to user profiles.
+- Edit or delete entries (with required authorization).
+- Generate reports for various academic achievements.
+- View real-time data analysis through charts and graphs.
 
 ## Motivation
-This project was created as part of the [Treehouse Full Stack Javascript Techdegree](https://teamtreehouse.com/techdegree/full-stack-javascript).
 
-## Technologies used
-- Javascript
-- Node.js
-- Express
-- SQLite
-- SQL ORM Sequelize
-- Postman
-- React - React Router, Hooks, Context API
-- Authentication
+This project streamlines faculty competence management, making it easier for faculty members to organize and document their contributions. The application is designed to be scalable and user-friendly, with features aimed at enhancing academic productivity.
 
-## Getting started
+## Technologies Used
+
+- **Frontend**: React, React Router, Hooks, Context API, Tailwind CSS, Lucide React icons
+- **Backend**: Node.js, Express, Sequelize ORM
+- **Database**: SQLite
+- **Authentication**: JWT & `js-cookie` for session management
+- **Data Analysis**: Chart.js for graphical data representation
+- **Testing**: Postman
+- **Deployment**: Firebase (for authentication and hosting)
+
+## Getting Started
 
 ### Downloading
-Click on the 'Code' button and clone this project via command line or select 'Download Zip.'
 
-### Installing and running
-1. Unzip the zip file if you have downloaded this project as a zip file.
-1. Open the folder on the command line, such as Git Bash, Powershell or Terminal.
-1. Run `npm install` in both the `api` and `client` folders to install all dependencies to run this project.
-1. On the `api` folder, run `npm run seed` to initialise the database with sample data
-1. Run `npm start` to start the application.
-1. Open your browser/API testing platform and visit [http://localhost:3000](http://localhost:3000).
+Click on the 'Code' button and clone this project via the command line or select 'Download Zip.'
+
+### Installing and Running
+
+1. Unzip the zip file if you downloaded this project as a zip file.
+2. Open the project folder in your command line tool.
+3. Run `npm install` in both the `api` and `client` folders.
+4. In the `api` folder, run `npm run seed` to initialize the database with sample data.
+5. Start the server by running `npm start` in the `api` folder.
+6. Start the client by running `npm start` in the `client` folder.
+7. Open your browser and navigate to http://localhost:3000 to view the app.
+
+### Environment Setup
+
+Create an `.env` file in the root of the `api` folder with the following:
+
+```
+DATABASE_URL=sqlite::memory
+JWT_SECRET=your_secret_key
+```
 
 ## Available Scripts
+
 In the project directory, you can run:
 
-### `npm install`
-To install and update project dependencies.
+- `npm install`: Installs and updates project dependencies.
+- `npm run seed`: Initializes the database with sample data.
+- `npm start`: Starts the app in development mode.
 
-### `npm run seed`
-To initialise the database with sample data.
+## Testing the API with Postman
 
-### `npm start`
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view the site in the browser.
+To test the backend API, use Postman or any other API testing tool. Import the sample requests from the `PostmanCollection` folder to easily test all endpoints.
+
+## Folder Structure
+
+- `/client`: React frontend implementation
+- `/api`: Backend implementation
+  - `/models`: Sequelize models
+  - `/controllers`: Request handling logic
+- `/mockups` and `/markup`: UI mockup designs (if applicable)
