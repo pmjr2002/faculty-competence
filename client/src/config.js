@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: 'http://localhost:5000/api',
+  apiBaseUrl: 'https://faculty-competence4.onrender.com',
 };
 
 export default config;

@@ -13,7 +13,7 @@ class Database {
     this.books = seedData.books;
     this.patents = seedData.patents;
     this.enableLogging = enableLogging;
-    this.context = new Context('https://faculty-competence4.onrender.com/fsjstd-restapi.db', enableLogging);
+    this.context = new Context('fsjstd-restapi.db', enableLogging);
   }
 
   log(message) {
