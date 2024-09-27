@@ -72,4 +72,4 @@ Only authorised users are permitted to create courses.
 Updates details of a course. Only the currently authenticated User who is the owner of the course is permitted to update the course.
 
 #### `DELETE /api/courses/:id`
-Deletes a course by course id. Only the currently authenticated User who is the owner of the course is permitted to delete the course. 
+Deletes a course by course id. Only the currently authenticated User who is the owner of the course is permitted to delete the course.
