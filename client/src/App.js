@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Header from './Components/Header';
 import Dashboard from './Components/Dashboard';
@@ -15,23 +16,28 @@ import CreatePublication from './Components/Publications/CreatePublication';
 import Events from './Components/Events/Events';
 import CreateEvent from './Components/Events/CreateEvent';
 import EventDetail from './Components/Events/EventDetail';
+import EventReport from './Components/Events/EventReport';
 import UpdateEvent from './Components/Events/UpdateEvent';
 import Journals from './Components/Publications/Journal/Journals';
 import CreateJournal from './Components/Publications/Journal/CreateJournal';
 import JournalDetail from './Components/Publications/Journal/JournalDetail';
 import UpdateJournal from './Components/Publications/Journal/UpdateJournal';
+import JournalReport from './Components/Publications/Journal/JournalReport';
 import Conferences from './Components/Publications/Conference/Conferences';
 import CreateConference from './Components/Publications/Conference/CreateConference';
 import ConferenceDetail from './Components/Publications/Conference/ConferenceDetail';
 import UpdateConference from './Components/Publications/Conference/UpdateConference';
+import ConferenceReport from './Components/Publications/Conference/ConferenceReport';
 import Books from './Components/Publications/Book/Books';
 import CreateBook from './Components/Publications/Book/CreateBook';
 import BookDetail from './Components/Publications/Book/BookDetail';
 import UpdateBook from './Components/Publications/Book/UpdateBook';
+import BookReport from './Components/Publications/Book/BookReport';
 import Patents from './Components/Publications/Patent/Patents';
 import CreatePatent from './Components/Publications/Patent/CreatePatent';
 import PatentDetail from './Components/Publications/Patent/PatentDetail';
 import UpdatePatent from './Components/Publications/Patent/UpdatePatent';
+import PatentReport from './Components/Publications/Patent/PatentReport';
 import NotFound from './Components/Errors/NotFound';
 import Forbidden from './Components/Errors/Forbidden';
 import UnhandledError from './Components/Errors/UnhandledError';
@@ -39,9 +45,16 @@ import UnhandledError from './Components/Errors/UnhandledError';
 import PrivateRoute from './PrivateRoute';
 
 function App() {
+  const location = useLocation();
+  const isEventReportPage = location.pathname === '/events/report';
+  const isJournalReportPage = location.pathname === '/journals/report';
+  const isConferenceReportPage = location.pathname === '/conferences/report';
+  const isBookReportPage = location.pathname === '/books/report';
+  const isPatentReportPage = location.pathname === '/patents/report';
+
   return (
     <div id="root">
-      <Header />
+      {!isEventReportPage && !isJournalReportPage && !isConferenceReportPage && !isBookReportPage && !isPatentReportPage && <Header />}
       <main>
         <Routes>
           <Route path="/" element={<Navigate replace to="/dashboard" />} />
@@ -79,6 +92,9 @@ function App() {
           <Route path="/events/:id/update" element={<PrivateRoute />}>
             <Route path="/events/:id/update" element={<UpdateEvent />} />
           </Route>
+          <Route path="/events/report" element={<PrivateRoute />}>
+            <Route path="/events/report" element={<EventReport />} />
+          </Route>
           
           <Route path="/journals" element={<PrivateRoute />}>
             <Route path="/journals" element={<Journals />} />
@@ -91,6 +107,9 @@ function App() {
           </Route>
           <Route path="/journals/:id/update" element={<PrivateRoute />}>
             <Route path="/journals/:id/update" element={<UpdateJournal />} />
+          </Route>
+          <Route path="/journals/report" element={<PrivateRoute />}>
+            <Route path="/journals/report" element={<JournalReport />} />
           </Route>
 
 
@@ -106,6 +125,9 @@ function App() {
           <Route path="/conferences/:id/update" element={<PrivateRoute />}>
             <Route path="/conferences/:id/update" element={<UpdateConference />} />
           </Route>
+          <Route path="/conferences/report" element={<PrivateRoute />}>
+            <Route path="/conferences/report" element={<ConferenceReport />} />
+          </Route>
 
           <Route path="/books" element={<PrivateRoute />}>
             <Route path="/books" element={<Books />} />
@@ -119,6 +141,9 @@ function App() {
           <Route path="/books/:id/update" element={<PrivateRoute />}>
             <Route path="/books/:id/update" element={<UpdateBook />} />
           </Route>
+          <Route path="/books/report" element={<PrivateRoute />}>
+            <Route path="/books/report" element={<BookReport />} />
+          </Route>
 
           <Route path="/patents" element={<PrivateRoute />}>
             <Route path="/patents" element={<Patents />} />
@@ -131,6 +156,9 @@ function App() {
           </Route>
           <Route path="/patents/:id/update" element={<PrivateRoute />}>
             <Route path="/patents/:id/update" element={<UpdatePatent />} />
+          </Route>
+          <Route path="/patents/report" element={<PrivateRoute />}>
+            <Route path="/patents/report" element={<PatentReport />} />
           </Route>
 
 

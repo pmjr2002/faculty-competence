@@ -16,6 +16,7 @@ const CreatePatent = () => {
   let navigate = useNavigate();
 
   const patentOffices = [
+    "CGPDTM - Indian Patent Office",
     "USPTO - United States Patent and Trademark Office",
     "EPO - European Patent Office",
     "JPO - Japan Patent Office",
@@ -26,7 +27,6 @@ const CreatePatent = () => {
     "IP Australia",
     "INPI - French National Institute of Industrial Property",
     "DPMA - German Patent and Trade Mark Office",
-    "CGPDTM - Indian Patent Office" // Added Indian Patent Office
   ];
 
   const onChange = (event) => {

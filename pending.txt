@@ -1,5 +1,4 @@
 1. reflect update profile
 2. new course schema
-3. report
 4. faculty mebership
 5. designation

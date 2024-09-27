@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../Context';
 import { Building, Globe, BookOpen, Mail, Tag, FileText, PenTool, Book, Briefcase } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 export default function Component() {
   const context = useContext(Context.Context);
   const authUser = context.authenticatedUser;
-  
+
   const [coursesCount, setCoursesCount] = useState(0);
   const [journalsCount, setJournalsCount] = useState(0);
   const [booksCount, setBooksCount] = useState(0);
@@ -20,7 +20,7 @@ export default function Component() {
   useEffect(() => {
     if (authUser) {
       setIsLoading(true);
-      
+
       const fetchData = async () => {
         try {
           const courses = await context.data.getCourses();
@@ -44,7 +44,7 @@ export default function Component() {
           setPatentsCount(filteredPatents.length);
           setEventsCount(filteredEvents.length);
 
-          // Prepare yearly data for the line chart
+          // Prepare yearly data for the bar chart
           const currentYear = new Date().getFullYear();
           const yearsData = [];
           for (let i = 0; i < 5; i++) {
@@ -60,6 +60,16 @@ export default function Component() {
             });
           }
           setYearlyData(yearsData.reverse());
+
+          // Prepare events data for the line chart
+          const eventsYearsData = [];
+          for (let i = 0; i < 5; i++) {
+            const year = currentYear - i;
+            eventsYearsData.push({
+              year,
+              events: filteredEvents.filter(event => new Date(event.Date).getFullYear() === year).length,
+            });
+          }
 
           setIsLoading(false);
         } catch (error) {
@@ -160,8 +170,21 @@ export default function Component() {
                 <Bar dataKey="books" fill="#FFBB28" />
                 <Bar dataKey="conferences" fill="#FF8042" />
                 <Bar dataKey="patents" fill="#8884d8" />
-                <Bar dataKey="events" fill="#82ca9d" />
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Line Chart */}
+          <div className="col-span-full bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4">Yearly Patents</h2>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={yearlyData}>
+                <XAxis dataKey="year" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="patents" stroke="#8884d8" />
+              </LineChart>
             </ResponsiveContainer>
           </div>
 

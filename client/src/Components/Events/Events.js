@@ -64,6 +64,10 @@ const Events = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">Events</h1>
+
+      <div className="mb-4 text-lg font-semibold text-gray-700">
+        Total Events: {events.length}
+      </div>
       
       {showFilter && (
         <div className="mb-6 flex space-x-4">
@@ -134,6 +138,11 @@ const Events = () => {
       <div className="mt-6">
         <Link to='/events/create' className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           New Event
+        </Link>
+      </div>
+      <div className="mt-6">
+        <Link to='/events/report' className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Generate Report
         </Link>
       </div>
     </div>
