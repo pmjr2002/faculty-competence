@@ -30,7 +30,7 @@ export default function Component() {
           const patents = await context.data.getPatents();
           const events = await context.data.getEvents();
 
-          const filteredCourses = courses.filter(course => course.userId === authUser.id);
+          const filteredCourses = courses.filter(course => course.userid === authUser.id);
           const filteredJournals = journals.filter(journal => journal.userid === authUser.id);
           const filteredBooks = books.filter(book => book.userid === authUser.id);
           const filteredConferences = conferences.filter(conference => conference.userid === authUser.id);

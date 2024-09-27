@@ -42,7 +42,7 @@ const CreateCourse = () => {
       description: courseDescription,
       estimatedTime,
       materialsNeeded,
-      userId: authUser.id,
+      userid: authUser.id,
     };
 
     context.data.createCourse(course, authUser.emailAddress, authUser.password)

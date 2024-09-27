@@ -14,7 +14,7 @@ const Courses = () => {
     // Fetch courses
     context.data.getCourses()
       .then((response) => {
-        const filteredCourses = response.filter(course => course.userId === authUser.id);
+        const filteredCourses = response.filter(course => course.userid === authUser.id);
         setCourses(filteredCourses);
         setIsLoading(false);
       })

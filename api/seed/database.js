@@ -62,7 +62,7 @@ class Database {
         VALUES
           (?, ?, ?, ?, ?, datetime('now'), datetime('now'));
       `,
-      course.userId,
+      course.userid,
       course.title,
       course.description,
       course.estimatedTime,
@@ -77,7 +77,7 @@ class Database {
         VALUES
           (?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
       `,
-      event.userId,
+      event.userid,
       event.title,
       event.description,
       event.eventType,
@@ -94,7 +94,7 @@ class Database {
         VALUES
           (?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
       `,
-      journal.userId,
+      journal.userid,
       journal.title,
       journal.authors,
       journal.publicationDate,
@@ -114,7 +114,7 @@ class Database {
             VALUES
               (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
           `,
-          conference.userId,
+          conference.userid,
           conference.title,
           conference.authors,
           conference.publicationDate,
@@ -132,7 +132,7 @@ class Database {
             VALUES
               (?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
           `,
-          book.userId,
+          book.userid,
           book.title,
           book.authors,
           book.publicationDate,
@@ -148,7 +148,7 @@ class Database {
             VALUES
               (?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
           `,
-          patent.userId,
+          patent.userid,
           patent.title,
           patent.inventors,
           patent.publicationDate,
@@ -270,7 +270,7 @@ class Database {
         materialsNeeded VARCHAR(255), 
         createdAt DATETIME NOT NULL, 
         updatedAt DATETIME NOT NULL, 
-        userId INTEGER NOT NULL DEFAULT -1 
+        userid INTEGER NOT NULL DEFAULT -1 
           REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
       );
     `);
@@ -336,7 +336,7 @@ await this.context.execute(`
         publisher VARCHAR(255) NOT NULL DEFAULT '',
         createdAt DATETIME NOT NULL, 
         updatedAt DATETIME NOT NULL, 
-        userId INTEGER NOT NULL DEFAULT -1 
+        userid INTEGER NOT NULL DEFAULT -1 
           REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
     );
 `);
@@ -441,7 +441,7 @@ const patentTableExists = await this.tableExists('Patents');
         applicationNumber VARCHAR(50) NOT NULL DEFAULT '' UNIQUE, 
         createdAt DATETIME NOT NULL, 
         updatedAt DATETIME NOT NULL, 
-        userId INTEGER NOT NULL DEFAULT -1 
+        userid INTEGER NOT NULL DEFAULT -1 
           REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE
       );
     `);

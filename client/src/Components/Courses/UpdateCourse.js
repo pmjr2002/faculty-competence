@@ -79,7 +79,7 @@ const UpdateCourse = () => {
       description,
       estimatedTime,
       materialsNeeded,
-      userId: authUser.id,
+      userid: authUser.id,
     };
 
     context.data.updateCourse(id, course, authUser.emailAddress, authUser.password)

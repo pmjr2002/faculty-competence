@@ -3,140 +3,164 @@
       {
         "firstName": "John",
         "lastName": "Doe",
-        "affiliation": "University A",
-        "areasOfInterest": "Computer Science, AI",
-        "homepage": "http://john.doe.com",
         "emailAddress": "john.doe@example.com",
-        "password": "hashedpassword"
+        "password": "password123",
+        "affiliation": "University X",
+        "areasOfInterest": "Computer Science",
+        "homepage": "https://johnswebsite.com"
       },
       {
         "firstName": "Jane",
         "lastName": "Smith",
-        "affiliation": "Institute B",
-        "areasOfInterest": "Physics, Quantum Mechanics",
-        "homepage": "http://jane.smith.com",
         "emailAddress": "jane.smith@example.com",
-        "password": "hashedpassword"
+        "password": "password456",
+        "affiliation": "Institute Y",
+        "areasOfInterest": "Data Science",
+        "homepage": "https://janeswebsite.com"
       }
     ],
     "courses": [
       {
-        "title": "Introduction to Machine Learning",
-        "description": "An introductory course on machine learning concepts and techniques.",
-        "estimatedTime": "4 weeks",
-        "materialsNeeded": "Basic understanding of programming and statistics.",
-        "userId": 1
+        "userid": 1,
+        "title": "Introduction to Computer Science",
+        "description": "A beginner's course on computer science fundamentals.",
+        "estimatedTime": "10 hours",
+        "materialsNeeded": "Laptop, Internet Access",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
       },
       {
-        "title": "Quantum Mechanics 101",
-        "description": "Basic course on quantum mechanics and related topics.",
-        "estimatedTime": "6 weeks",
-        "materialsNeeded": "Background in physics and mathematics.",
-        "userId": 2
+        "userid": 2,
+        "title": "Advanced Data Analysis",
+        "description": "An advanced course on data analysis techniques.",
+        "estimatedTime": "15 hours",
+        "materialsNeeded": "Laptop, Data Analysis Software",
+        "createdAt": "2024-01-02T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       }
     ],
     "events": [
       {
-        "title": "AI Conference 2024",
-        "description": "Annual AI conference discussing latest research and technologies.",
+        "userid": 1,
+        "title": "Tech Conference 2024",
+        "description": "A conference on the latest technology trends.",
         "eventType": "Conference",
         "participationType": "Speaker",
-        "eventDate": "2024-03-10",
-        "location": "New York, USA",
-        "userId": 1
+        "eventDate": "2024-05-15T00:00:00Z",
+        "location": "Convention Center, City",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
       },
       {
-        "title": "Physics Workshop 2024",
-        "description": "Workshop on the latest trends in physics research.",
+        "userid": 2,
+        "title": "Data Science Workshop",
+        "description": "A workshop on data science methodologies.",
         "eventType": "Workshop",
         "participationType": "Attendee",
-        "eventDate": "2024-04-20",
-        "location": "London, UK",
-        "userId": 2
+        "eventDate": "2024-06-20T00:00:00Z",
+        "location": "Tech Hub, City",
+        "createdAt": "2024-01-02T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       }
     ],
     "journals": [
       {
-        "title": "Journal of Artificial Intelligence Research",
-        "authors": "John Doe",
-        "publicationDate": "2024-06-10",
-        "volume": 12,
-        "issue": 2,
-        "pages": "110-125",
-        "publisher": "AI Research Society",
-        "journal": "",
-        "userId": 1
+        "userid": 1,
+        "title": "Advances in AI",
+        "authors": "John Doe, Jane Smith",
+        "publicationDate": "2024-03-01T00:00:00Z",
+        "journal": "Journal of Artificial Intelligence",
+        "volume": "12",
+        "issue": "3",
+        "pages": "45-67",
+        "publisher": "Tech Publishers",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
       },
       {
-        "title": "Quantum Physics Review",
+        "userid": 2,
+        "title": "Data Science Innovations",
         "authors": "Jane Smith",
-        "publicationDate": "2024-07-15",
-        "volume": 8,
-        "issue": 1,
-        "pages": "45-60",
-        "publisher": "Physics Society",
-        "journal": "",
-        "userId": 2
+        "publicationDate": "2024-04-10T00:00:00Z",
+        "journal": "Journal of Data Science",
+        "volume": "8",
+        "issue": "2",
+        "pages": "12-25",
+        "publisher": "Data Publications",
+        "createdAt": "2024-01-02T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       }
     ],
     "conferences": [
       {
-        "title": "International Conference on AI",
-        "authors": "John Doe",
-        "publicationDate": "2024-09-01",
-        "conference": "ICAI 2024",
-        "volume": 1,
-        "issue": "",
-        "pages": "12-20",
-        "userId": 1
+        "userid": 1,
+        "title": "International Conference on Robotics",
+        "authors": "John Doe, Alice Brown",
+        "publicationDate": "2024-04-20T00:00:00Z",
+        "conference": "ICR 2024",
+        "volume": "5",
+        "issue": "2",
+        "pages": "123-134",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
       },
       {
-        "title": "Global Physics Summit",
+        "userid": 2,
+        "title": "AI for Healthcare Conference",
         "authors": "Jane Smith",
-        "publicationDate": "2024-08-20",
-        "conference": "GPS 2024",
-        "volume": 1,
-        "issue": "",
-        "pages": "85-100",
-        "userId": 2
-      }
-    ],
-    "patents": [
-      {
-        "title": "AI-Driven Neural Network Optimization",
-        "inventors": "John Doe",
-        "publicationDate": "2024-05-01",
-        "patentNumber": "US12345678",
-        "patentOffice": "USPTO",
-        "applicationNumber": "US20240001234",
-        "userId": 1
-      },
-      {
-        "title": "Quantum Computing for Cryptography",
-        "inventors": "Jane Smith",
-        "publicationDate": "2024-06-05",
-        "patentNumber": "US87654321",
-        "patentOffice": "USPTO",
-        "applicationNumber": "US20240012345",
-        "userId": 2
+        "publicationDate": "2024-05-25T00:00:00Z",
+        "conference": "AIC 2024",
+        "volume": "2",
+        "issue": "1",
+        "pages": "45-56",
+        "createdAt": "2024-01-02T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       }
     ],
     "books": [
       {
-        "title": "Deep Learning Fundamentals",
+        "userid": 1,
+        "title": "Mastering Data Science",
         "authors": "John Doe",
-        "publicationDate": "2023-11-12",
-        "publisher": "TechBooks Publishing",
-        "pages": 300,
-        "userId": 1
+        "publicationDate": "2024-02-01T00:00:00Z",
+        "volume": "1",
+        "pages": "200",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
       },
       {
-        "title": "Advanced Quantum Mechanics",
+        "userid": 2,
+        "title": "Comprehensive Guide to Data Analysis",
         "authors": "Jane Smith",
-        "publicationDate": "2024-01-20",
-        "publisher": "SciencePress",
-        "pages": 250,
-        "userId": 2
+        "publicationDate": "2024-03-15T00:00:00Z",
+        "volume": "2",
+        "pages": "350",
+        "createdAt": "2024-01-02T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
+      }
+    ],
+    "patents": [
+      {
+        "userid": 1,
+        "title": "Innovative AI Algorithm",
+        "inventors": "John Doe, Alice Brown",
+        "publicationDate": "2024-06-01T00:00:00Z",
+        "patentOffice": "USPTO",
+        "patentNumber": "US1234567",
+        "applicationNumber": "US1234567A1",
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z"
+      },
+      {
+        "userid": 2,
+        "title": "Novel Data Compression Technique",
+        "inventors": "Jane Smith",
+        "publicationDate": "2024-07-10T00:00:00Z",
+        "patentOffice": "EPO",
+        "patentNumber": "EP7654321",
+        "applicationNumber": "EP7654321A1",
+        "createdAt": "2024-01-02T00:00:00Z",
+        "updatedAt": "2024-01-02T00:00:00Z"
       }
     ]
   }
