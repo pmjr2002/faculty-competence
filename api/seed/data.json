@@ -1,0 +1,143 @@
+{
+    "users": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "affiliation": "University A",
+        "areasOfInterest": "Computer Science, AI",
+        "homepage": "http://john.doe.com",
+        "emailAddress": "john.doe@example.com",
+        "password": "hashedpassword"
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "affiliation": "Institute B",
+        "areasOfInterest": "Physics, Quantum Mechanics",
+        "homepage": "http://jane.smith.com",
+        "emailAddress": "jane.smith@example.com",
+        "password": "hashedpassword"
+      }
+    ],
+    "courses": [
+      {
+        "title": "Introduction to Machine Learning",
+        "description": "An introductory course on machine learning concepts and techniques.",
+        "estimatedTime": "4 weeks",
+        "materialsNeeded": "Basic understanding of programming and statistics.",
+        "userId": 1
+      },
+      {
+        "title": "Quantum Mechanics 101",
+        "description": "Basic course on quantum mechanics and related topics.",
+        "estimatedTime": "6 weeks",
+        "materialsNeeded": "Background in physics and mathematics.",
+        "userId": 2
+      }
+    ],
+    "events": [
+      {
+        "title": "AI Conference 2024",
+        "description": "Annual AI conference discussing latest research and technologies.",
+        "eventType": "Conference",
+        "participationType": "Speaker",
+        "eventDate": "2024-03-10",
+        "location": "New York, USA",
+        "userId": 1
+      },
+      {
+        "title": "Physics Workshop 2024",
+        "description": "Workshop on the latest trends in physics research.",
+        "eventType": "Workshop",
+        "participationType": "Attendee",
+        "eventDate": "2024-04-20",
+        "location": "London, UK",
+        "userId": 2
+      }
+    ],
+    "journals": [
+      {
+        "title": "Journal of Artificial Intelligence Research",
+        "authors": "John Doe",
+        "publicationDate": "2024-06-10",
+        "volume": 12,
+        "issue": 2,
+        "pages": "110-125",
+        "publisher": "AI Research Society",
+        "journal": "",
+        "userId": 1
+      },
+      {
+        "title": "Quantum Physics Review",
+        "authors": "Jane Smith",
+        "publicationDate": "2024-07-15",
+        "volume": 8,
+        "issue": 1,
+        "pages": "45-60",
+        "publisher": "Physics Society",
+        "journal": "",
+        "userId": 2
+      }
+    ],
+    "conferences": [
+      {
+        "title": "International Conference on AI",
+        "authors": "John Doe",
+        "publicationDate": "2024-09-01",
+        "conference": "ICAI 2024",
+        "volume": 1,
+        "issue": "",
+        "pages": "12-20",
+        "userId": 1
+      },
+      {
+        "title": "Global Physics Summit",
+        "authors": "Jane Smith",
+        "publicationDate": "2024-08-20",
+        "conference": "GPS 2024",
+        "volume": 1,
+        "issue": "",
+        "pages": "85-100",
+        "userId": 2
+      }
+    ],
+    "patents": [
+      {
+        "title": "AI-Driven Neural Network Optimization",
+        "inventors": "John Doe",
+        "publicationDate": "2024-05-01",
+        "patentNumber": "US12345678",
+        "patentOffice": "USPTO",
+        "applicationNumber": "US20240001234",
+        "userId": 1
+      },
+      {
+        "title": "Quantum Computing for Cryptography",
+        "inventors": "Jane Smith",
+        "publicationDate": "2024-06-05",
+        "patentNumber": "US87654321",
+        "patentOffice": "USPTO",
+        "applicationNumber": "US20240012345",
+        "userId": 2
+      }
+    ],
+    "books": [
+      {
+        "title": "Deep Learning Fundamentals",
+        "authors": "John Doe",
+        "publicationDate": "2023-11-12",
+        "publisher": "TechBooks Publishing",
+        "pages": 300,
+        "userId": 1
+      },
+      {
+        "title": "Advanced Quantum Mechanics",
+        "authors": "Jane Smith",
+        "publicationDate": "2024-01-20",
+        "publisher": "SciencePress",
+        "pages": 250,
+        "userId": 2
+      }
+    ]
+  }
+  
