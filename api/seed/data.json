@@ -28,8 +28,8 @@
         "description": "A beginner's course on computer science fundamentals.",
         "estimatedTime": "10 hours",
         "materialsNeeded": "Laptop, Internet Access",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
+        "createdAt": "2024-01-01 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-01 00:00:00.000 +00:00"
       },
       {
         "userid": 2,
@@ -37,8 +37,8 @@
         "description": "An advanced course on data analysis techniques.",
         "estimatedTime": "15 hours",
         "materialsNeeded": "Laptop, Data Analysis Software",
-        "createdAt": "2024-01-02T00:00:00Z",
-        "updatedAt": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-02 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-02 00:00:00.000 +00:00"
       }
     ],
     "events": [
@@ -47,122 +47,122 @@
         "title": "Tech Conference 2024",
         "description": "A conference on the latest technology trends.",
         "eventType": "Conference",
-        "participationType": "Speaker",
-        "eventDate": "2024-05-15T00:00:00Z",
+        "participationType": "Delivered",
+        "eventDate": "2022-05-15 00:00:00.000 +00:00",
         "location": "Convention Center, City",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
+        "createdAt": "2024-01-01 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-01 00:00:00.000 +00:00"
       },
       {
         "userid": 2,
         "title": "Data Science Workshop",
         "description": "A workshop on data science methodologies.",
         "eventType": "Workshop",
-        "participationType": "Attendee",
-        "eventDate": "2024-06-20T00:00:00Z",
+        "participationType": "Attended",
+        "eventDate": "2021-06-20 00:00:00.000 +00:00",
         "location": "Tech Hub, City",
-        "createdAt": "2024-01-02T00:00:00Z",
-        "updatedAt": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-02 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-02 00:00:00.000 +00:00"
       }
     ],
     "journals": [
       {
         "userid": 1,
         "title": "Advances in AI",
-        "authors": "John Doe, Jane Smith",
-        "publicationDate": "2024-03-01T00:00:00Z",
+        "authors": "Abhinav Bagalkot",
+        "publicationDate": "2023-03-01 00:00:00.000 +00:00",
         "journal": "Journal of Artificial Intelligence",
         "volume": "12",
         "issue": "3",
         "pages": "45-67",
         "publisher": "Tech Publishers",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
+        "createdAt": "2024-01-01 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-01 00:00:00.000 +00:00"
       },
       {
         "userid": 2,
         "title": "Data Science Innovations",
-        "authors": "Jane Smith",
-        "publicationDate": "2024-04-10T00:00:00Z",
+        "authors": "Shahrukh Khan",
+        "publicationDate": "2022-04-10 00:00:00.000 +00:00",
         "journal": "Journal of Data Science",
         "volume": "8",
         "issue": "2",
         "pages": "12-25",
         "publisher": "Data Publications",
-        "createdAt": "2024-01-02T00:00:00Z",
-        "updatedAt": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-02 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-02 00:00:00.000 +00:00"
       }
     ],
     "conferences": [
       {
         "userid": 1,
         "title": "International Conference on Robotics",
-        "authors": "John Doe, Alice Brown",
-        "publicationDate": "2024-04-20T00:00:00Z",
+        "authors": "Abhinav Bagalkot",
+        "publicationDate": "2021-04-20 00:00:00.000 +00:00",
         "conference": "ICR 2024",
         "volume": "5",
         "issue": "2",
         "pages": "123-134",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
+        "createdAt": "2024-01-01 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-01 00:00:00.000 +00:00"
       },
       {
         "userid": 2,
         "title": "AI for Healthcare Conference",
-        "authors": "Jane Smith",
-        "publicationDate": "2024-05-25T00:00:00Z",
+        "authors": "Shahrukh Khan",
+        "publicationDate": "2023-05-25 00:00:00.000 +00:00",
         "conference": "AIC 2024",
         "volume": "2",
         "issue": "1",
         "pages": "45-56",
-        "createdAt": "2024-01-02T00:00:00Z",
-        "updatedAt": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-02 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-02 00:00:00.000 +00:00"
       }
     ],
     "books": [
       {
         "userid": 1,
         "title": "Mastering Data Science",
-        "authors": "John Doe",
-        "publicationDate": "2024-02-01T00:00:00Z",
+        "authors": "Abhinav Bagalkot",
+        "publicationDate": "2024-02-01 00:00:00.000 +00:00",
         "volume": "1",
         "pages": "200",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
+        "createdAt": "2024-01-01 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-01 00:00:00.000 +00:00"
       },
       {
         "userid": 2,
         "title": "Comprehensive Guide to Data Analysis",
-        "authors": "Jane Smith",
-        "publicationDate": "2024-03-15T00:00:00Z",
+        "authors": "Shahrukh Khan",
+        "publicationDate": "2024-03-15 00:00:00.000 +00:00",
         "volume": "2",
         "pages": "350",
-        "createdAt": "2024-01-02T00:00:00Z",
-        "updatedAt": "2024-01-02T00:00:00Z"
+        "createdAt": "2024-01-02 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-02 00:00:00.000 +00:00"
       }
     ],
     "patents": [
       {
         "userid": 1,
         "title": "Innovative AI Algorithm",
-        "inventors": "John Doe, Alice Brown",
-        "publicationDate": "2024-06-01T00:00:00Z",
-        "patentOffice": "USPTO",
-        "patentNumber": "US1234567",
-        "applicationNumber": "US1234567A1",
-        "createdAt": "2024-01-01T00:00:00Z",
-        "updatedAt": "2024-01-01T00:00:00Z"
+        "inventors": "Abhinav Bagalkot",
+        "publicationDate": "2022-06-01 00:00:00.000 +00:00",
+        "patentOffice": "CGPDTM",
+        "patentNumber": "IND1234567",
+        "applicationNumber": "IND1234567A1",
+        "createdAt": "2024-01-01 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-01 00:00:00.000 +00:00"
       },
       {
         "userid": 2,
         "title": "Novel Data Compression Technique",
-        "inventors": "Jane Smith",
-        "publicationDate": "2024-07-10T00:00:00Z",
-        "patentOffice": "EPO",
-        "patentNumber": "EP7654321",
-        "applicationNumber": "EP7654321A1",
-        "createdAt": "2024-01-02T00:00:00Z",
-        "updatedAt": "2024-01-02T00:00:00Z"
+        "inventors": "Shahrukh Khan",
+        "publicationDate": "2021-07-10 00:00:00.000 +00:00",
+        "patentOffice": "CGPDTM",
+        "patentNumber": "IND7654321",
+        "applicationNumber": "IND7654321A1",
+        "createdAt": "2024-01-02 00:00:00.000 +00:00",
+        "updatedAt": "2024-01-02 00:00:00.000 +00:00"
       }
     ]
   }

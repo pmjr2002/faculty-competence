@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../Context';
+import { useNavigate } from 'react-router-dom';
 import { Building, Globe, BookOpen, Mail, Tag, FileText, PenTool, Book, Briefcase } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 export default function Component() {
   const context = useContext(Context.Context);
   const authUser = context.authenticatedUser;
+  const navigate = useNavigate();  // Use the navigate hook
 
   const [counts, setCounts] = useState({
     courses: 0,
@@ -29,7 +31,7 @@ export default function Component() {
             dataTypes.map(type => context.data[`get${type}`]())
           );
 
-          const filteredData = fetchedData.map((items, index) => 
+          const filteredData = fetchedData.map((items, index) =>
             items.filter(item => item.userid === authUser.id)
           );
 
@@ -39,34 +41,34 @@ export default function Component() {
 
           setCounts(newCounts);
 
-          // Prepare yearly data for the charts
+          // Process yearly data from 2021 to 2024
           const currentYear = new Date().getFullYear();
-          const yearsData = [];
-          for (let i = 4; i >= 0; i--) {
-            const year = currentYear - i;
-            const yearData = {
+          const pastFourYears = Array.from({ length: 4 }, (_, i) => currentYear - (3 - i)); // 2021 to 2024
+
+          const calculateYearlyCount = (items) => {
+            return pastFourYears.map(year => ({
               year,
-              courses: 0,
-              journals: 0,
-              books: 0,
-              conferences: 0,
-              patents: 0,
-              events: 0
-            };
+              count: items.filter(item => new Date(item.publicationDate).getFullYear() === year).length
+            }));
+          };
 
-            dataTypes.forEach((type, index) => {
-              const typeData = filteredData[index];
-              const count = typeData.filter(item => {
-                const itemDate = new Date(item.startDate || item.publicationDate || item.Date);
-                return itemDate.getFullYear() === year;
-              }).length;
-              yearData[type.toLowerCase()] = count;
-            });
+          const yearlyCounts = {
+            journals: calculateYearlyCount(filteredData[1]), // Journals
+            conferences: calculateYearlyCount(filteredData[3]), // Conferences
+            books: calculateYearlyCount(filteredData[2]), // Books
+            patents: calculateYearlyCount(filteredData[4])  // Patents
+          };
 
-            yearsData.push(yearData);
-          }
+          // Combine yearly counts for all types
+          const combinedYearlyData = pastFourYears.map(year => ({
+            year,
+            journals: yearlyCounts.journals.find(item => item.year === year)?.count || 0,
+            conferences: yearlyCounts.conferences.find(item => item.year === year)?.count || 0,
+            books: yearlyCounts.books.find(item => item.year === year)?.count || 0,
+            patents: yearlyCounts.patents.find(item => item.year === year)?.count || 0,
+          }));
 
-          setYearlyData(yearsData);
+          setYearlyData(combinedYearlyData);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching data', error);
@@ -93,6 +95,11 @@ export default function Component() {
   const COLORS = ['#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d', '#ffc658'];
 
   const pieChartData = Object.entries(counts).map(([key, value]) => ({ name: key, value }));
+
+  // Helper function to navigate to different pages
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -147,50 +154,21 @@ export default function Component() {
             </ResponsiveContainer>
           </div>
 
-          {/* Bar Chart */}
-          <div className="col-span-full bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Yearly Academic Activities</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={yearlyData}>
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="journals" fill="#00C49F" />
-                <Bar dataKey="books" fill="#FFBB28" />
-                <Bar dataKey="conferences" fill="#FF8042" />
-                <Bar dataKey="patents" fill="#8884d8" />
-                <Bar dataKey="events" fill="#82ca9d" />
-                <Bar dataKey="courses" fill="#ffc658" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Line Chart */}
-          <div className="col-span-full bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Yearly Patents</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={yearlyData}>
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="patents" stroke="#8884d8" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-
           {/* Activity Counts */}
           <div className="col-span-full grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
-              { title: 'Courses', count: counts.courses, icon: BookOpen, color: 'text-green-500' },
-              { title: 'Journals', count: counts.journals, icon: FileText, color: 'text-orange-500' },
-              { title: 'Books', count: counts.books, icon: Book, color: 'text-purple-500' },
-              { title: 'Conferences', count: counts.conferences, icon: Briefcase, color: 'text-red-500' },
-              { title: 'Patents', count: counts.patents, icon: PenTool, color: 'text-pink-500' },
-              { title: 'Events', count: counts.events, icon: BookOpen, color: 'text-blue-500' },
+              { title: 'Courses', count: counts.courses, icon: BookOpen, color: 'text-green-500', route: '/courses' },
+              { title: 'Journals', count: counts.journals, icon: FileText, color: 'text-orange-500', route: '/journals' },
+              { title: 'Books', count: counts.books, icon: Book, color: 'text-purple-500', route: '/books' },
+              { title: 'Conferences', count: counts.conferences, icon: Briefcase, color: 'text-red-500', route: '/conferences' },
+              { title: 'Patents', count: counts.patents, icon: PenTool, color: 'text-pink-500', route: '/patents' },
+              { title: 'Events', count: counts.events, icon: BookOpen, color: 'text-blue-500', route: '/events' },
             ].map((item, index) => (
-              <div key={index} className="bg-white rounded-lg shadow p-6">
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow p-6 cursor-pointer" // Add cursor pointer
+                onClick={() => handleNavigation(item.route)} // Navigate on click
+              >
                 <h2 className="text-xl font-semibold mb-4">{item.title}</h2>
                 <div className="flex items-center justify-between">
                   <item.icon className={`h-8 w-8 ${item.color}`} />
@@ -203,14 +181,48 @@ export default function Component() {
             ))}
           </div>
 
-          {/* Personal Information */}
+          {/* Bar Chart for Publications per Year */}
           <div className="col-span-full bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4">Publications Per Year (2021-2024)</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <BarChart data={yearlyData}>
+                <XAxis dataKey="year" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="journals" fill="#8884d8" name="Journals" />
+                <Bar dataKey="conferences" fill="#82ca9d" name="Conferences" />
+                <Bar dataKey="books" fill="#ffc658" name="Books" />
+                <Bar dataKey="patents" fill="#ff8042" name="Patents" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Line Chart for Cumulative Publications */}
+          <div className="col-span-full bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4">Cumulative Publications (2021-2024)</h2>
+            <ResponsiveContainer width="100%" height={400}>
+              <LineChart data={yearlyData}>
+                <XAxis dataKey="year" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="journals" stroke="#8884d8" name="Journals" />
+                <Line type="monotone" dataKey="conferences" stroke="#82ca9d" name="Conferences" />
+                <Line type="monotone" dataKey="books" stroke="#ffc658" name="Books" />
+                <Line type="monotone" dataKey="patents" stroke="#ff8042" name="Patents" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          {/* Personal Information */}
+          <div className="col-span-full bg-white rounded-lg shadow p-6"
+          onClick={() => handleNavigation(`/user/${authUser.id}/update`)}>
             <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
-            <div className="flex items-center space-x-2">
-              <Mail className="h-5 w-5 text-gray-500" />
-              <a href={`mailto:${facultyData.email}`} className="text-blue-600 hover:underline">
-                {facultyData.email}
-              </a>
+            <div className="flex flex-wrap gap-4">
+              <div className="flex items-center space-x-2">
+                <Mail className="h-5 w-5 text-gray-500" />
+                <span>{facultyData.email}</span>
+              </div>
             </div>
           </div>
         </div>
