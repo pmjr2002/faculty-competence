@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       }
     },
     publicationDate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false,
       validate: {
         notNull: {

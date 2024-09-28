@@ -1,22 +1,24 @@
 {
     "users": [
       {
-        "firstName": "John",
-        "lastName": "Doe",
-        "emailAddress": "john.doe@example.com",
-        "password": "password123",
-        "affiliation": "University X",
-        "areasOfInterest": "Computer Science",
-        "homepage": "https://johnswebsite.com"
+        "designation": "Professor",
+        "firstName": "Abhinav",
+        "lastName": "Bagalkot",
+        "emailAddress": "bagalkotabhinav@gmail.com",
+        "password": "abhi1502",
+        "affiliation": "Assistant Professor, Department of Information Science and Engineering, RVCE",
+        "areasOfInterest": "Data Science, Machine Learning, Artificial Intelligence",
+        "homepage": "https://rvce.edu.in/abhinav-bagalkot"
       },
       {
-        "firstName": "Jane",
-        "lastName": "Smith",
-        "emailAddress": "jane.smith@example.com",
-        "password": "password456",
-        "affiliation": "Institute Y",
-        "areasOfInterest": "Data Science",
-        "homepage": "https://janeswebsite.com"
+        "designation": "Dr.",
+        "firstName": "Shahrukh",
+        "lastName": "Khan",
+        "emailAddress": "srk@gmail.com",
+        "password": "welcome123",
+        "affiliation": "Associate Professor, Department of Computer Science and Engineering, RVCE",
+        "areasOfInterest": "Natural Language Processing, Deep Learning, Computer Vision",
+        "homepage": "https://rvce.edu.in/shahrukh-khan"
       }
     ],
     "courses": [

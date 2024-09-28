@@ -39,10 +39,11 @@ class Database {
     return this.context
       .execute(`
         INSERT INTO Users
-          (firstName, lastName, emailAddress, password, affiliation, areasOfInterest, homepage, createdAt, updatedAt)
+          (designation, firstName, lastName, emailAddress, password, affiliation, areasOfInterest, homepage, createdAt, updatedAt)
         VALUES
-          (?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
+          (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'));
       `,
+      user.designation,
       user.firstName,
       user.lastName,
       user.emailAddress,
@@ -229,6 +230,7 @@ class Database {
     await this.context.execute(`
       CREATE TABLE Users (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        designation VARCHAR(255) NOT NULL DEFAULT '',
         firstName VARCHAR(255) NOT NULL DEFAULT '', 
         lastName VARCHAR(255) NOT NULL DEFAULT '', 
         emailAddress VARCHAR(255) NOT NULL DEFAULT '' UNIQUE, 

@@ -7,15 +7,16 @@ export default function Component() {
   const context = useContext(Context.Context);
   const authUser = context.authenticatedUser;
 
-  const [coursesCount, setCoursesCount] = useState(0);
-  const [journalsCount, setJournalsCount] = useState(0);
-  const [booksCount, setBooksCount] = useState(0);
-  const [conferencesCount, setConferencesCount] = useState(0);
-  const [patentsCount, setPatentsCount] = useState(0);
-  const [eventsCount, setEventsCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const [counts, setCounts] = useState({
+    courses: 0,
+    journals: 0,
+    books: 0,
+    conferences: 0,
+    patents: 0,
+    events: 0
+  });
   const [yearlyData, setYearlyData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (authUser) {
@@ -23,54 +24,49 @@ export default function Component() {
 
       const fetchData = async () => {
         try {
-          const courses = await context.data.getCourses();
-          const journals = await context.data.getJournals();
-          const books = await context.data.getBooks();
-          const conferences = await context.data.getConferences();
-          const patents = await context.data.getPatents();
-          const events = await context.data.getEvents();
+          const dataTypes = ['Courses', 'Journals', 'Books', 'Conferences', 'Patents', 'Events'];
+          const fetchedData = await Promise.all(
+            dataTypes.map(type => context.data[`get${type}`]())
+          );
 
-          const filteredCourses = courses.filter(course => course.userid === authUser.id);
-          const filteredJournals = journals.filter(journal => journal.userid === authUser.id);
-          const filteredBooks = books.filter(book => book.userid === authUser.id);
-          const filteredConferences = conferences.filter(conference => conference.userid === authUser.id);
-          const filteredPatents = patents.filter(patent => patent.userid === authUser.id);
-          const filteredEvents = events.filter(event => event.userid === authUser.id);
+          const filteredData = fetchedData.map((items, index) => 
+            items.filter(item => item.userid === authUser.id)
+          );
 
-          setCoursesCount(filteredCourses.length);
-          setJournalsCount(filteredJournals.length);
-          setBooksCount(filteredBooks.length);
-          setConferencesCount(filteredConferences.length);
-          setPatentsCount(filteredPatents.length);
-          setEventsCount(filteredEvents.length);
+          const newCounts = Object.fromEntries(
+            dataTypes.map((type, index) => [type.toLowerCase(), filteredData[index].length])
+          );
 
-          // Prepare yearly data for the bar chart
+          setCounts(newCounts);
+
+          // Prepare yearly data for the charts
           const currentYear = new Date().getFullYear();
           const yearsData = [];
-          for (let i = 0; i < 5; i++) {
+          for (let i = 4; i >= 0; i--) {
             const year = currentYear - i;
-            yearsData.push({
+            const yearData = {
               year,
-              courses: filteredCourses.filter(course => new Date(course.startDate).getFullYear() === year).length,
-              journals: filteredJournals.filter(journal => new Date(journal.publicationDate).getFullYear() === year).length,
-              books: filteredBooks.filter(book => new Date(book.publicationDate).getFullYear() === year).length,
-              conferences: filteredConferences.filter(conf => new Date(conf.publicationDate).getFullYear() === year).length,
-              patents: filteredPatents.filter(patent => new Date(patent.publicationDate).getFullYear() === year).length,
-              events: filteredEvents.filter(event => new Date(event.Date).getFullYear() === year).length,
-            });
-          }
-          setYearlyData(yearsData.reverse());
+              courses: 0,
+              journals: 0,
+              books: 0,
+              conferences: 0,
+              patents: 0,
+              events: 0
+            };
 
-          // Prepare events data for the line chart
-          const eventsYearsData = [];
-          for (let i = 0; i < 5; i++) {
-            const year = currentYear - i;
-            eventsYearsData.push({
-              year,
-              events: filteredEvents.filter(event => new Date(event.Date).getFullYear() === year).length,
+            dataTypes.forEach((type, index) => {
+              const typeData = filteredData[index];
+              const count = typeData.filter(item => {
+                const itemDate = new Date(item.startDate || item.publicationDate || item.Date);
+                return itemDate.getFullYear() === year;
+              }).length;
+              yearData[type.toLowerCase()] = count;
             });
+
+            yearsData.push(yearData);
           }
 
+          setYearlyData(yearsData);
           setIsLoading(false);
         } catch (error) {
           console.error('Error fetching data', error);
@@ -87,22 +83,16 @@ export default function Component() {
   }
 
   const facultyData = {
-    name: `${authUser.firstName} ${authUser.lastName}`,
+    name: `${authUser.designation} ${authUser.firstName} ${authUser.lastName}`,
     affiliation: authUser.affiliation,
     homepage: authUser.homepage,
     interests: authUser.areasOfInterest,
     email: authUser.emailAddress
   };
 
-  const COLORS = ['#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+  const COLORS = ['#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d', '#ffc658'];
 
-  const pieChartData = [
-    { name: 'Journals', value: journalsCount },
-    { name: 'Books', value: booksCount },
-    { name: 'Conferences', value: conferencesCount },
-    { name: 'Patents', value: patentsCount },
-    { name: 'Events', value: eventsCount },
-  ];
+  const pieChartData = Object.entries(counts).map(([key, value]) => ({ name: key, value }));
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -170,6 +160,8 @@ export default function Component() {
                 <Bar dataKey="books" fill="#FFBB28" />
                 <Bar dataKey="conferences" fill="#FF8042" />
                 <Bar dataKey="patents" fill="#8884d8" />
+                <Bar dataKey="events" fill="#82ca9d" />
+                <Bar dataKey="courses" fill="#ffc658" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -191,12 +183,12 @@ export default function Component() {
           {/* Activity Counts */}
           <div className="col-span-full grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
-              { title: 'Courses', count: coursesCount, icon: BookOpen, color: 'text-green-500' },
-              { title: 'Journals', count: journalsCount, icon: FileText, color: 'text-orange-500' },
-              { title: 'Books', count: booksCount, icon: Book, color: 'text-purple-500' },
-              { title: 'Conferences', count: conferencesCount, icon: Briefcase, color: 'text-red-500' },
-              { title: 'Patents', count: patentsCount, icon: PenTool, color: 'text-pink-500' },
-              { title: 'Events', count: eventsCount, icon: BookOpen, color: 'text-blue-500' },
+              { title: 'Courses', count: counts.courses, icon: BookOpen, color: 'text-green-500' },
+              { title: 'Journals', count: counts.journals, icon: FileText, color: 'text-orange-500' },
+              { title: 'Books', count: counts.books, icon: Book, color: 'text-purple-500' },
+              { title: 'Conferences', count: counts.conferences, icon: Briefcase, color: 'text-red-500' },
+              { title: 'Patents', count: counts.patents, icon: PenTool, color: 'text-pink-500' },
+              { title: 'Events', count: counts.events, icon: BookOpen, color: 'text-blue-500' },
             ].map((item, index) => (
               <div key={index} className="bg-white rounded-lg shadow p-6">
                 <h2 className="text-xl font-semibold mb-4">{item.title}</h2>

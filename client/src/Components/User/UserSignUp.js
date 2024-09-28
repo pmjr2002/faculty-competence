@@ -5,6 +5,7 @@ import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 
 const UserSignUp = () => {
   const context = useContext(Context.Context);
+  const [designation, setDesignation] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [affiliation, setAffiliation] = useState('');
@@ -21,6 +22,7 @@ const UserSignUp = () => {
     const name = event.target.name;
     const value = event.target.value;
 
+    if (name === 'designation') setDesignation(value);
     if (name === 'firstName') setFirstName(value);
     if (name === 'lastName') setLastName(value);
     if (name === 'affiliation') setAffiliation(value);
@@ -35,6 +37,7 @@ const UserSignUp = () => {
   const submit = (event) => {
     event.preventDefault();
     const user = {
+      designation,
       firstName,
       lastName,
       affiliation,
@@ -81,6 +84,12 @@ const UserSignUp = () => {
           </div>
         ) : null}
         <form className="space-y-4" onSubmit={submit}>
+          {/* Designation */}
+          <div className="relative">
+            <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
+            <input id="designation" name="designation" type="text" value={designation} onChange={onChange} required className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="For eg. Associate Professor" />
+          </div>
+          
           {/* First Name */}
           <div className="relative">
             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>

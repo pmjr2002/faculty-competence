@@ -7,6 +7,7 @@ const UpdateUser = () => {
   const context = useContext(Context.Context);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({
+    designation: '',
     firstName: '',
     lastName: '',
     affiliation: '',
@@ -63,19 +64,29 @@ const UpdateUser = () => {
         navigate('/signin');
         return;
       }
-
+  
       const { authenticatedUser, data } = context;
+  
+      // Send updated user data to the API
       const response = await data.updateUser(id, user, authenticatedUser.emailAddress, authenticatedUser.password);
+      
       if (response.length) {
         setErrors(response);
       } else {
+        // Update the context with the new user data
+        context.actions.updateAuthenticatedUser({
+          ...authenticatedUser,
+          ...user, // Merge updated user info with the current authenticated user
+        });
         navigate('/');
       }
     } catch (error) {
       console.error('Error updating user', error);
       navigate('/error');
     }
-  }
+  };
+  
+  
 
   const handleCancel = (event) => {
     event.preventDefault();
@@ -102,6 +113,17 @@ const UpdateUser = () => {
       <form onSubmit={handleSubmit}>
         <div className="main--flex">
           <div>
+          <div>
+        <label htmlFor="lastName">Designation</label>
+        <input
+          id="designation"
+          name="designation"
+          type="text"
+          value={user.designation}
+          onChange={handleChange}
+          placeholder="Enter designation"
+        />
+      </div>
           <div>
         <label htmlFor="firstName">First Name</label>
         <input

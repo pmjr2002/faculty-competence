@@ -22,6 +22,7 @@ export class Provider extends Component {
       actions: {
         signIn: this.signIn,
         signOut: this.signOut,
+        updateAuthenticatedUser: this.updateAuthenticatedUser,  // Add the new update method
       },
     };
     return (
@@ -45,9 +46,23 @@ export class Provider extends Component {
           authenticatedUser: { ...user, ...{ password } }
         };
       });
-      Cookies.set('authenticatedUser', JSON.stringify(this.state.authenticatedUser), { expires: 1 });
+      Cookies.set('authenticatedUser', JSON.stringify({ ...user, ...{ password } }), { expires: 1 });
     }
     return user;
+  }
+
+  /**
+   * Updates the authenticated user after they modify their information.
+   * This will update both the state and the cookies.
+   * @param {Object} updatedUser - The updated user object
+   */
+  updateAuthenticatedUser = (updatedUser) => {
+    this.setState(() => {
+      return {
+        authenticatedUser: updatedUser,
+      };
+    });
+    Cookies.set('authenticatedUser', JSON.stringify(updatedUser), { expires: 1 });
   }
 
   /**

@@ -69,7 +69,7 @@ router.put("/courses/:id", authenticateUser, asyncHandler(async (req, res, next)
   try {
     course = await Course.findByPk(req.params.id);
     if (course) {
-      if (course.userId === user.id) {
+      if (course.userid === user.id) {
         await course.update(req.body);
         res.status(204).end();
       } else {
@@ -94,7 +94,7 @@ router.delete("/courses/:id", authenticateUser, asyncHandler(async (req, res, ne
   const user = req.currentUser;
   const course = await Course.findByPk(req.params.id);
   if (course) {
-    if (course.userId === user.id) {
+    if (course.userid === user.id) {
       await course.destroy();
       res.status(204).end();
     } else {
@@ -106,34 +106,6 @@ router.delete("/courses/:id", authenticateUser, asyncHandler(async (req, res, ne
   }
 }));
 
-
-// Count the total number of courses for a specific user
-router.get('/users/:id/course-count', authenticateUser, asyncHandler(async (req, res) => {
-  const userId = parseInt(req.params.id);
-  
-  try {
-    const user = await User.findByPk(userId);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-
-    // Check if the authenticated user is the same as the user whose course count we're retrieving
-    if (req.currentUser.id !== userId) {
-      return res.status(403).json({ error: 'You are not authorized to view this user\'s course count' });
-    }
-
-    const courseCount = await Course.count({
-      where: {
-        userId: userId
-      }
-    });
-
-    res.json({ courseCount });
-  } catch (error) {
-    console.error('Error retrieving course count:', error);
-    res.status(500).json({ error: 'Server error' });
-  }
-}));
 
 
 module.exports = router;

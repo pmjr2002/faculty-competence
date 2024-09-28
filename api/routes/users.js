@@ -57,7 +57,7 @@ router.put("/users/:id", authenticateUser, asyncHandler(async (req, res, next) =
     }
 
     // Only update fields that are provided in the request body
-    const updatableFields = ['firstName', 'lastName', 'affiliation', 'areasOfInterest', 'homepage', 'emailAddress', 'password'];
+    const updatableFields = ['designation', 'firstName', 'lastName', 'affiliation', 'areasOfInterest', 'homepage', 'emailAddress', 'password'];
     const updates = {};
     
     updatableFields.forEach(field => {

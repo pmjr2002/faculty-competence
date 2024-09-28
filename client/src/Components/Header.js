@@ -44,7 +44,7 @@ const Header = () => {
             </CustomButton>
           )}
           <h1 className="ml-4 text-xl font-bold">
-            {authUser ? `Welcome, ${authUser.firstName} ${authUser.lastName}!` : 'Faculty Competence System'}
+            {authUser ? `Welcome, ${authUser.designation} ${authUser.firstName} ${authUser.lastName}!` : 'Faculty Competence System'}
           </h1>
         </div>
 
